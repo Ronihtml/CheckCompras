@@ -1,0 +1,8 @@
+<!-- Arquivo na pasta values -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorBackground">#E8F5E9</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorText">#66BB6A</color>
+</resources>
