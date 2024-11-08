@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#4CAF50"
+                app:title="CheckCompras"
+                app:titleTextColor="#FFFFFF"
+                app:menu="@menu/top_app_bar"
+                app:navigationIcon="@drawable/ic_menu"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <!-- Welcome Message -->
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Olá, Usuário!"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <!-- Date -->
+            <TextView
+                android:id="@+id/currentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Segunda-feira, 5 de Novembro"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <!-- Balance Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/balanceCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintTop_toBottomOf="@id/currentDate">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_background">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Saldo Disponível"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:alpha="0.9"/>
+
+                        <TextView
+                            android:id="@+id/balanceValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R$ 2.459,90"
+                            android:textColor="#FFFFFF"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="8dp"/>
+
+                        <TextView
+                            android:id="@+id/monthlyBudget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Orçamento Mensal: R$ 3.000,00"
+                            android:textColor="#FFFFFF"
+                            android:alpha="0.8"
+                            android:layout_marginTop="8dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/budgetProgress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="8dp"
+                            android:progress="82"
+                            android:progressTint="#FFFFFF"
+                            android:backgroundTint="#80FFFFFF"/>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Quick Actions -->
+            <LinearLayout
+                android:id="@+id/quickActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/balanceCard">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/addPurchaseButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="8dp"
+                            android:background="@drawable/circle_background"
+                            android:src="@drawable/ic_add_shopping_cart"
+                            app:tint="#4CAF50"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nova Compra"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/historyButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="8dp"
+                            android:background="@drawable/circle_background"
+                            android:src="@drawable/ic_history"
+                            app:tint="#4CAF50"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Histórico"
+                            android:textColor="#333333"
+                            android:textSize="14sp"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Monthly Summary -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/monthSummaryCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintTop_toBottomOf="@id/quickActions">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Resumo do Mês"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Gasto"
+                                android:textColor="#666666"/>
+
+                            <TextView
+                                android:id="@+id/totalSpent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 540,10"
+                                android:textColor="#E53935"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Compras"
+                                android:textColor="#666666"/>
+
+                            <TextView
+                                android:id="@+id/totalPurchases"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="12"
+                                android:textColor="#333333"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Economia"
+                                android:textColor="#666666"/>
+
+                            <TextView
+                                android:id="@+id/totalSavings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 125,30"
+                                android:textColor="#4CAF50"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Recent Transactions -->
+            <TextView
+                android:id="@+id/recentTransactionsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Compras Recentes"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/monthSummaryCard"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/viewAllTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver Todas"
+                android:textColor="#4CAF50"
+                android:textStyle="bold"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="@id/recentTransactionsTitle"
+                app:layout_constraintBottom_toBottomOf="@id/recentTransactionsTitle"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transactionsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/recentTransactionsTitle"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:text="Nova Compra"
+        android:textColor="#FFFFFF"
+        app:icon="@drawable/ic_add"
+        app:iconTint="#FFFFFF"
+        app:backgroundTint="#4CAF50"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
